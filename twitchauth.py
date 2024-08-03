@@ -1,4 +1,4 @@
-import clientshit
+import client
 import requests
 
 # Set the grant type
@@ -10,9 +10,9 @@ TOKEN_URL = "https://id.twitch.tv/oauth2/token"
 # Set the request headers
 headers = {
     "Content-Type": "application/x-www-form-urlencoded",
-    "Client-ID": clientshit.client_id,
-    "Client-SECRET": clientshit.client_id,
-    "Authorization": f"Basic {clientshit.client_secret}"
+    "Client-ID": client.client_id,
+    "Client-SECRET": client.client_id,
+    "Authorization": f"Basic {client.client_secret}"
 }
 
 # Set the request data
@@ -30,7 +30,7 @@ if response.status_code == 200:
     access_token = response.json()["access_token"]
 
     # Update the clientshit module with the new access token
-    clientshit.access_token = access_token
+    client.access_token = access_token
 
     print("Access token obtained successfully!")
 else:

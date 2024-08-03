@@ -1,4 +1,6 @@
 clientshit.py
+client.py
+Main.py
 Rank_User.csv
 Total_Chatter.csv
 user1.txt
@@ -8,3 +10,5 @@ perfectstranger.txt
 /**__pycache__*/
 **/__pycache__/**
 __pycache__
+main.py
+det.txt

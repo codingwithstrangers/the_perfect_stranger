@@ -2,7 +2,7 @@ from datetime import date
 from operator import length_hint
 import random
 from twitchio.ext import commands, routines
-from clientshit import access_token
+from client import access_token
 import os
 import csv
 import pandas as pd
