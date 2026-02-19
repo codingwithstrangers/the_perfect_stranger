@@ -21,6 +21,9 @@ class Bot(commands.Bot):
         #     nick = "The_Perfect_Stranger")
         super().__init__(token= access_token , prefix='?', initial_channels=['codingwithstrangers'],
             nick = "Perfect_Stranger")
+        self.last_hourly_message = None
+        self.hourly_message_count = 0
+        self.duplicate_check_start_hour = 10
     async def event_ready(self):
        
         # Notify us when everything is ready!
@@ -44,7 +47,7 @@ class Bot(commands.Bot):
       
         #this will add the user to dic and count 
         # list of users to exclude
-        exclude_users = ['nightbot', 'streamlabs', 'codingwithstrangers', 'thestrangest_bot', 'restreambot']
+        exclude_users = ['nightbot', 'streamlabs', 'codingwithstrangers', 'thestrangest_bot', 'restreambot', 'thestrangest_bot']
 
         if message.author.name not in exclude_users:
             if message.author.name not in self.points_by_chatter.keys():
@@ -237,9 +240,19 @@ class Bot(commands.Bot):
         you can send the updated leaderboard here or print it out to console periodically
         ''' 
         Ranking_message+= await self.random_chatter(sorted_points_chatter)
-        
+
+        next_hour = self.hourly_message_count + 1
+        should_check_duplicate = next_hour > self.duplicate_check_start_hour
+        if should_check_duplicate and self.last_hourly_message == Ranking_message:
+            print(
+                f"Stopping bot: hour {next_hour} leaderboard message is identical to hour {next_hour - 1}."
+            )
+            await self.close()
+            return
 
         await self.get_channel("codingwithstrangers").send(Ranking_message)
+        self.last_hourly_message = Ranking_message
+        self.hourly_message_count = next_hour
 
     async def random_chatter (self, all_chatters):
         #we need all members after the 3rd member
