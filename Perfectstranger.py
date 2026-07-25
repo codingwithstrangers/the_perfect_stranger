@@ -73,7 +73,7 @@ class Bot(commands.Bot):
         #check if user is subscriber or not
         #if they use a channel emote "channel emote and are subbed" they are getting .5 point
         subbed_chatters = ["coding32Thinkmybrother", "coding32Trunks", "coding32Whatmybrother", "coding32Zemi", "coding32Goten", "coding32Heart", "coding32Outofsewer"
-                           , "coding32sewer", "coding32Suscoding", "coding32Donny", "coding32What", "coding32really", "thank you", "thanks", "thank you"]
+                           , "coding32sewer", "coding32Strangersus", "coding32Donny", "coding32What", "coding32really", "thank you", "thanks", "thank you"]
         for x in message.content.split():
             if x in subbed_chatters and message.author.is_subscriber == 1:
                 self.points_by_chatter[message.author.name] += .5
@@ -202,11 +202,11 @@ class Bot(commands.Bot):
         top_three = dict(list(sorted_points_chatter.items())[:3])
         for y, (name,points) in enumerate(top_three.items()):
             if y == 0:
-                Ranking_message+= f"***1st Place: {name} With {points} points is Leading The way coding32Zemi *** \n"
+                Ranking_message+= f" | 1st Place: {name} With {points} points is Leading The way coding32Zemi | \n"
             elif y == 1:
-                Ranking_message+= f"2nd Place: {name} With {points} points is Not Far Behind coding32Valor *** \n"
+                Ranking_message+= f" | 2nd Place: {name} With {points} points is Not Far Behind coding32Valor | \n"
             elif y == 2:
-                Ranking_message+= f"3rd Place: {name} With {points} points Will Not Be Ignored coding32Key *** \n"
+                Ranking_message+= f" | 3rd Place: {name} With {points} points Will Not Be Ignored coding32Key | \n"
 
         '''This will send message to specified channel every 10 seconds for 5 times, 
            remove iteration as it will stop after 5 times
@@ -263,7 +263,7 @@ class Bot(commands.Bot):
             
             return f"{random.choice(remaining_members)}, Is in the back but we see you"       
         else:
-            return "coding32Suscoding Come on Stranger I know you ain't Stalking and not Talking \n"
+            return "coding32Strangersus Come on Stranger I know you ain't Stalking and not Talking \n"
             
 bot = Bot()
 bot.run()
